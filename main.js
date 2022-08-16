@@ -22,6 +22,8 @@ async function getResults() { // Gets the results from a specific show and store
     }
 }
 
+// changed
+
 async function getShowData(showID, riderList, url) {
     const loadingBar = document.getElementById("loadingBar");
     const loadingBarText = document.getElementById("loadingBarText");

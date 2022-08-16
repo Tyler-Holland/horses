@@ -22,7 +22,7 @@ async function getResults() { // Gets the results from a specific show and store
     }
 }
 
-// changed
+// change
 
 async function getShowData(showID, riderList, url) {
     const loadingBar = document.getElementById("loadingBar");

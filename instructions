@@ -1,0 +1,15 @@
+Six shows: Two in July, two in August, two in September.
+
+Ayrazarrr: I need the average of the best two scores per horse/rider combination per division. Where the two scores have to be from two different shows
+
+So the competition is by division and then test.
+Division would be introductory, training, first, second, third, fourth, Prix st George, intermediate and Grand prix
+[10:08 AM] Ayrazarrr: Test within division doesn't matter for my purposes
+
+My notes
+--------
+Get the best score per horse/rider combination per division per show.
+
+Average the top two scores from different shows.
+
+Divisions: Introductory, Training, First, Second, Third, Fourth, Prix St. Georges, Intermediate and Grand Prix

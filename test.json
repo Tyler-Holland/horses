@@ -1,0 +1,193 @@
+{
+    "classData": [
+        {
+            "showId": 9334,
+            "classId": 11.0,
+            "classText": "11",
+            "name": "Bronze Intro Level Walk Trot Test A",
+            "time": "1900-01-01T12:45:00",
+            "date": "2022-08-13T00:00:00",
+            "ring": ""
+        },
+        {
+            "showId": 9334,
+            "classId": 17.0,
+            "classText": "17",
+            "name": "Bronze Training Test 2",
+            "time": "1900-01-01T14:14:00",
+            "date": "2022-08-13T00:00:00",
+            "ring": ""
+        },
+        {
+            "showId": 9334,
+            "classId": 19.0,
+            "classText": "19",
+            "name": "Bronze Training Test of Choice",
+            "time": "1900-01-01T11:29:00",
+            "date": "2022-08-13T00:00:00",
+            "ring": ""
+        },
+        {
+            "showId": 9334,
+            "classId": 20.0,
+            "classText": "20",
+            "name": "Bronze First Level Test 1",
+            "time": "1900-01-01T10:49:00",
+            "date": "2022-08-13T00:00:00",
+            "ring": ""
+        },
+        {
+            "showId": 9334,
+            "classId": 21.0,
+            "classText": "21",
+            "name": "Bronze First Level Test 2",
+            "time": "1900-01-01T09:14:00",
+            "date": "2022-08-13T00:00:00",
+            "ring": ""
+        },
+        {
+            "showId": 9334,
+            "classId": 66.0,
+            "classText": "66",
+            "name": "Silver Third Level Test of Choice",
+            "time": "1900-01-01T09:06:00",
+            "date": "2022-08-13T00:00:00",
+            "ring": ""
+        },
+        {
+            "showId": 9334,
+            "classId": 84.0,
+            "classText": "84",
+            "name": "Gold First Level Test 2",
+            "time": "1900-01-01T11:21:00",
+            "date": "2022-08-13T00:00:00",
+            "ring": ""
+        },
+        {
+            "showId": 9334,
+            "classId": 88.0,
+            "classText": "88",
+            "name": "Gold Second Level Test 2",
+            "time": "1900-01-01T08:08:00",
+            "date": "2022-08-13T00:00:00",
+            "ring": ""
+        },
+        {
+            "showId": 9334,
+            "classId": 90.0,
+            "classText": "90",
+            "name": "Gold Second Level Test of Choice",
+            "time": "1900-01-01T08:50:00",
+            "date": "2022-08-13T00:00:00",
+            "ring": ""
+        },
+        {
+            "showId": 9334,
+            "classId": 110.0,
+            "classText": "110",
+            "name": "Master Class Test of Choice",
+            "time": "1900-01-01T12:59:00",
+            "date": "2022-08-13T00:00:00",
+            "ring": ""
+        },
+        {
+            "showId": 9334,
+            "classId": 12.0,
+            "classText": "12",
+            "name": "Bronze Intro Level Walk Trot Test B",
+            "time": "1900-01-01T13:06:00",
+            "date": "2022-08-13T00:00:00",
+            "ring": ""
+        },
+        {
+            "showId": 9334,
+            "classId": 16.0,
+            "classText": "16",
+            "name": "Bronze Training Level 1",
+            "time": "1900-01-01T13:34:00",
+            "date": "2022-08-13T00:00:00",
+            "ring": ""
+        },
+        {
+            "showId": 9334,
+            "classId": 28.0,
+            "classText": "28",
+            "name": "Bronze Third Level Test 1",
+            "time": "1900-01-01T08:00:00",
+            "date": "2022-08-13T00:00:00",
+            "ring": ""
+        },
+        {
+            "showId": 9334,
+            "classId": 29.0,
+            "classText": "29",
+            "name": "Bronze Third Level Test 2",
+            "time": "1900-01-01T08:16:00",
+            "date": "2022-08-13T00:00:00",
+            "ring": ""
+        },
+        {
+            "showId": 9334,
+            "classId": 52.0,
+            "classText": "52",
+            "name": "Silver Training Level 2",
+            "time": "1900-01-01T10:41:00",
+            "date": "2022-08-13T00:00:00",
+            "ring": ""
+        },
+        {
+            "showId": 9334,
+            "classId": 60.0,
+            "classText": "60",
+            "name": "Silver Second Level Test 2",
+            "time": "1900-01-01T15:02:00",
+            "date": "2022-08-13T00:00:00",
+            "ring": ""
+        },
+        {
+            "showId": 9334,
+            "classId": 62.0,
+            "classText": "62",
+            "name": "Silver Second Level Test Of Choice",
+            "time": "1900-01-01T14:46:00",
+            "date": "2022-08-13T00:00:00",
+            "ring": ""
+        },
+        {
+            "showId": 9334,
+            "classId": 64.0,
+            "classText": "64",
+            "name": "Silver Third Level Test 2",
+            "time": "1900-01-01T09:38:00",
+            "date": "2022-08-13T00:00:00",
+            "ring": ""
+        },
+        {
+            "showId": 9334,
+            "classId": 80.0,
+            "classText": "80",
+            "name": "Gold Training Level Test 2",
+            "time": "1900-01-01T09:46:00",
+            "date": "2022-08-13T00:00:00",
+            "ring": ""
+        },
+        {
+            "showId": 9334,
+            "classId": 82.0,
+            "classText": "82",
+            "name": "Gold Training Level Test of Choice",
+            "time": "1900-01-01T10:02:00",
+            "date": "2022-08-13T00:00:00",
+            "ring": ""
+        },
+        {
+            "showId": 9334,
+            "classId": 99.0,
+            "classText": "99",
+            "name": "Gold FEI Test of Choice",
+            "time": "1900-01-01T08:24:00",
+            "date": "2022-08-13T00:00:00",
+            "ring": ""
+        }
+    ]
+}

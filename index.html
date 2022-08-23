@@ -3,16 +3,24 @@
 
 <head>
   <meta charset="UTF-8" />
-  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <link rel="icon" type="image/png" href="/horseHead.png" />
   <link href="./style.css" rel="stylesheet">
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Vite App</title>
+  <title>Horse Scores</title>
 </head>
 
 <body>
+  <div id="navbar">
+    <ul>
+      <li><a href="./index.html">Home</a></li>
+      <li><a href="./results.html">Results</a></li>
+    </ul>
+  </div>
+
   <div id="searchContainer">
     <input type="text" id="searchBar" placeholder="https://www.foxvillage.com/show?id=1234">
-    <button id="searchBtn">Get stats</button>
+    <button id="searchBtn">Search</button>
+    <!-- <button id="showResults">Show results</button> -->
     <div id="loadingBarContainer">
       <div id="loadingBar"></div>
       <div id="loadingBarText"></div>

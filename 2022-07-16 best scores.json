@@ -1,0 +1,106 @@
+{
+    "AA/Open": {
+        "Introductory": {
+            "Elizabeth Thurston": {
+                "The Prancing Pony": "0.634375"
+            },
+            "Jackie Redmond": {
+                "Floyd": "0.634375"
+            },
+            "Kathleen Furber": {
+                "Knight Rider": "0"
+            }
+        },
+        "Grand Prix": {
+            "Sheri Doornekamp": {
+                "Axel": "0.6043478"
+            }
+        },
+        "Second": {
+            "Jennifer Matusiak": {
+                "Alcatraz": "0.65"
+            },
+            "Tori Pengelly": {
+                "Not Just A Girl": "0.6810811"
+            },
+            "Jeannette Sterner": {
+                "Canadream Charbon Adonis": "0.6716216"
+            },
+            "Christine Ryan": {
+                "JetsonP": "0"
+            }
+        },
+        "First": {
+            "Jennifer Matusiak": {
+                "Alcatraz": "0.64"
+            },
+            "Michelle Harper": {
+                "Bam": "0.6757143",
+                "Finn": "0.6414286"
+            },
+            "Kathryn Kienke": {
+                "Reeses Pieces": "0.4637931"
+            },
+            "Carolyn Russell Poliquin": {
+                "Enchantress": "0.7257143"
+            },
+            "Kim Nielsen": {
+                "Salem": "0.6442857"
+            },
+            "Ashley LaFonte": {
+                "Danzin Queen": "0.62"
+            }
+        },
+        "Intermediate": {
+            "Amy Campbell": {
+                "Healer": "0.6691176"
+            }
+        },
+        "Training": {
+            "Shari Clark": {
+                "Stratocaster": "0.6634616"
+            },
+            "Jeannette Sterner": {
+                "Sensazione": "0.6884615"
+            }
+        },
+        "Third": {
+            "Michelle Harper": {
+                "Atlantis": "0.6256757"
+            },
+            "Jeannette Sterner": {
+                "Canadream Charbon Adonis": "0.6378378"
+            },
+            "Valerie Todd": {
+                "Donneridge": "0.6121622"
+            }
+        }
+    },
+    "JR/YR": {
+        "First": {
+            "Emma Hall": {
+                "Las Vegas SB": "0.6517242"
+            }
+        },
+        "Training": {
+            "Alaina Harper": {
+                "Casper": "0.6557692"
+            }
+        }
+    },
+    "No": {
+        "Training": {
+            "Patricia Hendren": {
+                "Quillane Axell": "0.7"
+            },
+            "Jennifer Glabush": {
+                "Eloise": "0.6672414"
+            }
+        },
+        "Introductory": {
+            "Justine Pitcher": {
+                "Clarkstoncandy": "0.63125"
+            }
+        }
+    }
+}

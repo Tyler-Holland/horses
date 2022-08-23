@@ -1,0 +1,119 @@
+{
+    "AA/Open": {
+        "Introductory": {
+            "Elizabeth Thurston": {
+                "The Prancing Pony": "0.675"
+            },
+            "Jackie Redmond": {
+                "Floyd": "0.66875"
+            }
+        },
+        "Training": {
+            "Elizabeth Thurston": {
+                "The Prancing Pony": "0.5807692"
+            },
+            "Mary Jo Maur": {
+                "Ace": "0.55"
+            },
+            "Shari Clark": {
+                "Stratocaster": "0.6534483"
+            },
+            "Dick Bayly": {
+                "Crown of Hearts": "0.6672414"
+            },
+            "Kiersten Pryce": {
+                "Watch Mi Go": "0.6596154"
+            }
+        },
+        "Grand Prix": {
+            "Sheri Doornekamp": {
+                "Axel": "0.6108696"
+            }
+        },
+        "Second": {
+            "Christine Ryan": {
+                "JETSON P": "0.604054"
+            },
+            "Tori Pengelly": {
+                "Not Just A Girl": "0.65"
+            },
+            "Katiana Fleck": {
+                "Second Amendment": "0.6324325"
+            },
+            "Jeannette Sterner": {
+                "Canadream Charbon Adonis": "0.6418919"
+            }
+        },
+        "First": {
+            "Mary Jo Maur": {
+                "Ace": "0.5413793"
+            },
+            "Michelle Harper": {
+                "Finn": "0.6603448",
+                "Bam": "0.69"
+            },
+            "Dick Bayly": {
+                "Crown of Hearts": "0.6357143"
+            },
+            "Kim Nielsen": {
+                "Salem": "0.6689655"
+            }
+        },
+        "Intermediate": {
+            "Amy Campbell": {
+                "Healer": "0.6352941"
+            }
+        },
+        "Third": {
+            "Michelle Harper": {
+                "Atlantis": "0.5960526"
+            }
+        },
+        "Prix St. Georges": {
+            "Sondra Shantz": {
+                "Unique": "0.65"
+            }
+        }
+    },
+    "JR/YR": {
+        "Training": {
+            "Peyton Campbell": {
+                "Quilling": "0.662069"
+            },
+            "alaina Harper": {
+                "Casper": "0.6634616"
+            },
+            "Avery Harper": {
+                "Huckleberry Blue": "0.6655173"
+            }
+        },
+        "Introductory": {
+            "Kara Griffith": {
+                "Pettra": "0.6625"
+            }
+        }
+    },
+    "No": {
+        "Introductory": {
+            "Michelle M Nearing": {
+                "Bueno Fardango": "0.659375"
+            }
+        },
+        "Training": {
+            "Michelle M Nearing": {
+                "Bueno Fardango": "0.6258621"
+            },
+            "Jeniffer Glabush": {
+                "Eloise": "0.7"
+            },
+            "Tealah Clement": {
+                "Artax": "0.6741379"
+            }
+        },
+        "Third": {
+            "Naomi Scromeda": {
+                "Merit": "0.5945946"
+            }
+        }
+    }
+}

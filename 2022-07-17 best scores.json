@@ -1,0 +1,84 @@
+{
+    "AA/Open": {
+        "First": {
+            "Tori Pengelly": {
+                "Not Just A Valley Girl": "0.6128572"
+            },
+            "Dick Bayly": {
+                "Graf Bobby": "0"
+            },
+            "Ashley LaFonte": {
+                "Danzin Queen": "0"
+            }
+        },
+        "Training": {
+            "Amy Campbell": {
+                "Quilling": "0.6844828"
+            },
+            "Dick Bayly": {
+                "Graf Bobby": "0"
+            },
+            "Jeannette Sterner": {
+                "Sensazione": "0.712069"
+            },
+            "Angie Malone": {
+                "Poetic": "0.6931034"
+            }
+        },
+        "Second": {
+            "Jane Casson": {
+                "Mystic": "0.5013514"
+            },
+            "Katiana Fleck": {
+                "Second Amendment": "0"
+            },
+            "Jeannette Sterner": {
+                "Canadream Charbon Adonis": "0.6743243"
+            }
+        },
+        "Third": {
+            "Jeannette Sterner": {
+                "Canadream Charbon Adonis": "0.6148649"
+            }
+        }
+    },
+    "JR/YR": {
+        "Training": {
+            "Peyton Campbell": {
+                "Quilling": "0.6775862"
+            },
+            "Sydney Soederberg": {
+                "Tallinn": "0.675"
+            },
+            "Violet Blower": {
+                "Baby Grand": "0"
+            },
+            "Avery Harper": {
+                "Huckleberry Blue": "0.6586207"
+            },
+            "Grace Wallach": {
+                "Christopher Robin": "0.6865385"
+            }
+        },
+        "First": {
+            "Emma Hall": {
+                "Las Vegas SB": "0.7028571"
+            }
+        }
+    },
+    "No": {
+        "Training": {
+            "Molly Cook-Martin": {
+                "Lucie": "0.6534483"
+            },
+            "Jennifer Glabush": {
+                "Eloise": "0.737931"
+            }
+        },
+        "Introductory": {
+            "Kimberly Reid": {
+                "Red Alert": "0.634375"
+            }
+        }
+    }
+}

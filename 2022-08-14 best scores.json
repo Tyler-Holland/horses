@@ -1,0 +1,79 @@
+{
+    "AA/Open": {
+        "Grand Prix": {
+            "Sheri Doornekamp": {
+                "Axel": "0.623913"
+            }
+        },
+        "Second": {
+            "Christine Ryan": {
+                "JETSON P": "0.5904762"
+            },
+            "Jeannette Sterner": {
+                "Canadream Charbon Adonis": "0"
+            }
+        },
+        "First": {
+            "Jodie Compeau": {
+                "Powerwood Ten": "0.6485714"
+            },
+            "Mary-Jo Maur": {
+                "Don Dakarai": "0.5471429"
+            },
+            "Tori Pengelly": {
+                "Not Just A Valley Girl": "0.6471428"
+            },
+            "Dick Bayly": {
+                "Graf Bobby": "0.6614286"
+            }
+        },
+        "Prix St. Georges": {
+            "Amy Campbell": {
+                "Healer": "0.6205882"
+            },
+            "Alexandra Morgan": {
+                "Bazinga": "0.5720588"
+            }
+        },
+        "Training": {
+            "Hannah Konyer": {
+                "Gotta Love It": "0.6362069"
+            },
+            "Dick Bayly": {
+                "Graf Bobby": "0.637931"
+            }
+        },
+        "Third": {
+            "Jeannette Sterner": {
+                "Canadream Charbon Adonis": "0.5810811"
+            }
+        }
+    },
+    "JR/YR": {
+        "Training": {
+            "Peyton Campbell": {
+                "Quilling": "0"
+            }
+        },
+        "First": {
+            "Emma Hall": {
+                "Las Vegas SB": "0.6828572"
+            }
+        }
+    },
+    "No": {
+        "Training": {
+            "Duncan Wood": {
+                "Bruno": "0.6517242"
+            },
+            "Sophie Harrison Saxe": {
+                "Jolie": "0.5758621"
+            }
+        },
+        "Introductory": {
+            "Jessica Lemmon": {
+                "Sono": "0"
+            }
+        }
+    }
+}

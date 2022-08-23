@@ -6,6 +6,9 @@ So the competition is by division and then test.
 Division would be introductory, training, first, second, third, fourth, Prix st George, intermediate and Grand prix
 [10:08 AM] Ayrazarrr: Test within division doesn't matter for my purposes
 
+ So Jr's will be awarded separately from open/aa
+[3:31 PM] Ayrazarrr: JR/YR is one category, and open or AA are one other category.
+
 My notes
 --------
 Get the best score per horse/rider combination per division per show.
@@ -13,3 +16,6 @@ Get the best score per horse/rider combination per division per show.
 Average the top two scores from different shows.
 
 Divisions: Introductory, Training, First, Second, Third, Fourth, Prix St. Georges, Intermediate and Grand Prix
+// const divisions = ["Introductory", "Training", "First", "Second", "Third", "Fourth", "Prix St. Georges", "Intermediate", "Grand Prix"];
+
+Adult Amateur and Open go together. JR/YR on it's own.

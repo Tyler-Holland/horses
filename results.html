@@ -3,15 +3,39 @@
 
 <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <link href="./style.css" rel="stylesheet">
+    <link rel="icon" type="image/png" href="/horseHead.png" />
+    <link href="./styleResults.css" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite App</title>
+    <title>Results</title>
 </head>
 
 <body>
-    <a href="./index.html">Main</a>
-    <div id="searchResults"></div>
+    <div id="navbar">
+        <ul>
+            <li><a href="./index.html">Home</a></li>
+            <li><a href="./results.html">Results</a></li>
+            <li>
+                <a href="#" id="showsList">Shows</a>
+                <div id="showDropdown"></div>
+            </li>
+            <li><a href="#" id="finalResults">Final scores</a></li>
+        </ul>
+
+    </div>
+
+    <div id="searchResults">
+        <div id="dateContainer">
+            <div id="dateDiv"></div>
+            <div id="resultsDiv"></div>
+        </div>
+        <button id="resultsToggle">Show best scores</button>
+
+        <div id="resultsContainer">
+            <table id="tableContainer"></table>
+            <div id="bestScoresDiv"></div>
+        </div>
+
+    </div>
     <script type="module" src="/results.js"></script>
 </body>
 

@@ -6,25 +6,28 @@ const allShows = document.getElementById('allShows');
 const dateContainer = document.getElementById('dateContainer');
 const resultsToggle = document.getElementById('resultsToggle');
 const finalStandings = document.getElementById('finalStandings');
+const statDivIsNo = document.getElementById('statDivIsNo');
 
 const dbSelectors = { "riderName": "Rider", "riderID": "ID", "horse": "Horse", "statDiv": "STAT/DIV", "test": "Test", "c": "Score" };
 
-export async function showFullResults(showID) {
+function showFullResults(showID) {
 
-    dateContainer.style.visibility = "visible";
-    dateContainer.style.position = "relative";
-    resultsToggle.style.visibility = "visible";
-    resultsToggle.style.position = "relative";
+    showDateAndResultsToggle(true);
 
     bestScoresDiv.innerHTML = '';
     dateDiv.innerHTML = '';
 
     const showData = JSON.parse(localStorage.getItem(showID));
-    const showDataKeys = Object.keys(showData);
+    const showDataKeys = Object.keys(showData.riders);
     const dbSelectorsKeys = Object.keys(dbSelectors);
-    let color = true;
 
     const table = document.createElement('table');
+    table.id = "fullResultsTable";
+
+    const caption = document.createElement('caption');
+    caption.innerText = "";
+    table.append(caption);
+
     const tr = document.createElement('tr');
 
     dateDiv.innerText = `${showData.showInfo.date}: `;
@@ -33,45 +36,40 @@ export async function showFullResults(showID) {
 
     dbSelectorsKeys.forEach(key => {
         const th = document.createElement('th');
+        th.className = dbSelectors[key].toLowerCase();
         th.innerText = dbSelectors[key];
         tr.append(th);
     })
     table.append(tr);
 
     showDataKeys.forEach(riderID => {
-        const parsed = Number.parseInt(riderID);
+        showData.riders[riderID].data.forEach(round => {
+            if (typeof round === "object") {
+                const tr = document.createElement('tr');
 
-        if (parsed) {
-            showData[riderID].forEach(round => {
-                if (typeof round === "object") {
-                    const tr = document.createElement('tr');
+                dbSelectorsKeys.forEach(key => {
+                    const td = document.createElement('td');
+                    let keyValue = round[key];
 
-                    dbSelectorsKeys.forEach(key => {
-                        const td = document.createElement('td');
-                        let keyValue = round[key];
-
-                        if (key === "c") {
-                            keyValue = (keyValue * 100).toFixed(3);
-                        }
-
-                        if (key === "riderID") {
-                            keyValue = riderID;
-                        }
-
-                        td.innerText = keyValue;
-                        tr.append(td);
-                    })
-
-                    if (color) {
-                        tr.style.background = "#242424";
-                    } else {
-                        tr.style.background = "#2c2c2c";
+                    if (key === "c") {
+                        keyValue = (keyValue * 100).toFixed(3);
                     }
-                    color = !color;
-                    table.append(tr);
-                }
-            })
-        }
+
+                    if (key === "riderID") {
+                        keyValue = riderID;
+                    }
+
+                    if (key === "riderName") {
+                        keyValue = showData["riders"][riderID].name;
+                    }
+
+                    td.innerText = keyValue;
+                    tr.append(td);
+                })
+                table.append(tr);
+            }
+        })
+
     })
     bestScoresDiv.append(table);
     setTableWidth();
@@ -82,41 +80,40 @@ export async function showFullResults(showID) {
     resultsContainer.style.height = `${bestScoresDiv.offsetHeight}px`;
 }
 
-async function getBestScores(showID) {
+function getBestScores(showID) {
     const show = JSON.parse(localStorage.getItem(showID));
-    const ridersAtShow = Object.keys(show).filter(key => Number.isInteger(Number.parseInt(key)));
+    const ridersAtShow = Object.keys(show.riders).filter(key => Number.isInteger(Number.parseInt(key)));
 
     let sorted = { "AA/Open": {} };
 
-    ridersAtShow.forEach(rider => {
-        show[rider].forEach(round => {
-            if (typeof round === 'object') {
-                let division = round.statDiv;
-                const test = round.test;
-                const horse = round.horse;
-                const score = round.c;
-                const name = round.riderName;
+    ridersAtShow.forEach(riderID => {
+        const name = show.riders[riderID].name;
+        show.riders[riderID].data.forEach(round => {
+            let division = round.statDiv;
+            const test = round.test;
+            const horse = round.horse;
+            const score = round.c;
 
-                if (division === "Adult Amateur" | division === "Open") { // Merges the "Adult Amateur" and "Open" divisions into one
-                    division = "AA/Open";
-                }
-
-                if (!sorted[division]) {
-                    sorted[division] = {};
-                }
-
-                if (!sorted[division][test]) {
-                    sorted[division][test] = {};
-                }
-
-                if (!sorted[division][test][name]) {
-                    sorted[division][test][name] = {};
-                }
-
-                if (!sorted[division][test][name][horse] || score > sorted[division][test][name][horse]) {
-                    sorted[division][test][name][horse] = score;
-                }
+            if (division === "Adult Amateur" | division === "Open") { // Merges the "Adult Amateur" and "Open" divisions into one
+                division = "AA/Open";
             }
+
+            if (!sorted[division]) {
+                sorted[division] = {};
+            }
+
+            if (!sorted[division][test]) {
+                sorted[division][test] = {};
+            }
+
+            if (!sorted[division][test][name]) {
+                sorted[division][test][name] = {};
+            }
+
+            if (!sorted[division][test][name][horse] || score > sorted[division][test][name][horse]) {
+                sorted[division][test][name][horse] = score;
+            }
+
         })
     })
     return sorted;
@@ -126,13 +123,12 @@ function showBestScores(show, singleOrMulti) { // show should be ["date as a str
     const date = show[0]; // Date of the show
     const scores = show[1]; // Rider scores from the show
 
+    console.log(show);
+
     if (singleOrMulti === "single") {
         bestScoresDiv.innerHTML = '';
     } else {
-        dateContainer.style.visibility = "hidden";
-        dateContainer.style.position = "absolute";
-        resultsToggle.style.visibility = "hidden";
-        resultsToggle.style.position = "absolute";
+        showDateAndResultsToggle(false);
     }
 
     const masterDiv = document.createElement('div');
@@ -158,7 +154,6 @@ function showBestScores(show, singleOrMulti) { // show should be ["date as a str
 
         const tests = Object.keys(scores[division]);
         tests.forEach(test => {
-            let color = true;
             const table = document.createElement('table');
             const caption = document.createElement('caption');
             table.className = "test";
@@ -166,10 +161,9 @@ function showBestScores(show, singleOrMulti) { // show should be ["date as a str
             table.append(caption);
 
             const tr = document.createElement('tr');
-            tr.innerHTML = `<th>Rider</th>
-            <th>Horse</th>
-            <th>Score</th>`;
-            tr.style.background = "#363636";
+            tr.innerHTML = `<th class="rider">Rider</th>
+            <th class="horse">Horse</th>
+            <th class="score">Score</th>`;
             table.append(tr);
 
             const riders = Object.keys(scores[division][test]);
@@ -178,10 +172,10 @@ function showBestScores(show, singleOrMulti) { // show should be ["date as a str
                 const horses = Object.keys(scores[division][test][rider]);
                 horses.forEach((horse) => {
                     const tr = document.createElement('tr');
-                    const td = document.createElement('td');
+                    const riderTD = document.createElement('td');
 
-                    td.innerText = rider;
-                    tr.append(td);
+                    riderTD.innerText = rider;
+                    tr.append(riderTD);
 
                     const horseTD = document.createElement('td');
                     const scoreTD = document.createElement('td');
@@ -191,12 +185,6 @@ function showBestScores(show, singleOrMulti) { // show should be ["date as a str
                     tr.append(horseTD);
                     tr.append(scoreTD);
 
-                    if (color) {
-                        tr.style.background = "#555555";
-                    } else {
-                        tr.style.background = "#424242";
-                    }
-                    color = !color;
                     table.append(tr);
                     div.append(table);
                     showDiv.append(div);
@@ -209,29 +197,25 @@ function showBestScores(show, singleOrMulti) { // show should be ["date as a str
     masterDiv.append(showDiv);
     bestScoresDiv.append(masterDiv);
     setTableWidth();
+
 }
 
-resultsToggle.addEventListener('click', async () => {
+resultsToggle.addEventListener('click', () => {
     const showID = localStorage.getItem('searchedID');
 
     if (resultsToggle.innerText === "Show best scores") {
-        showBestScores([getShowDate(showID), await getBestScores(showID)], "single");
+        showBestScores([getShowDate(showID), getBestScores(showID)], "single");
         resultsToggle.innerText = "Show full results";
         resultsDiv.innerText = "Best scores";
         resultsContainer.style.width = `${bestScoresDiv.offsetWidth}px`;
         resultsContainer.style.height = `${bestScoresDiv.offsetHeight}px`;
+        tableSort();
+        sortTablesBy("score");
     } else {
         showFullResults(showID);
+        tableSort();
+        sortTablesBy("rider");
     }
-});
-
-
-
-window.addEventListener('DOMContentLoaded', () => {
-    const searchedID = localStorage.getItem('searchedID');
-    showsListDropdown();
-    showFullResults(searchedID);
-    setTableWidth();
 });
 
 function setTableWidth() {
@@ -245,8 +229,18 @@ document.addEventListener('click', (e) => {
     const isInLocalStorage = Object.keys(localStorage).includes(showID);
 
     if (isInLocalStorage) {
+        const windowKeys = Object.keys(window);
+        const regex = /Col\d/;
+        windowKeys.forEach(key => {
+            if (key.match(regex)) {
+                delete window[key];
+            }
+        })
+
         localStorage.setItem('searchedID', showID);
         showFullResults(showID);
+        tableSort();
+        sortTablesBy("rider");
     }
 });
 
@@ -273,16 +267,21 @@ function showsListDropdown() {
 }
 
 allShows.addEventListener('click', showResultsOfAllShows);
-async function showResultsOfAllShows() {
-    const showArray = await getAllScores();
+function showResultsOfAllShows() {
+    const showArray = getAllScores();
+    const showArrayKeys = Object.keys(showArray);
     bestScoresDiv.innerHTML = '';
 
-    showArray.forEach(show => {
+    showArrayKeys.forEach(show => {
+        show = [show, showArray[show]];
         showBestScores(show, "multi");
     })
+
+    tableSort();
+    sortTablesBy("score");
 }
 
-async function getAllScores() {
+function getAllScores() {
     const showIDsStoredLocally = Object.keys(localStorage)
         .filter(key => {
             return Number.isInteger(Number.parseInt(key));
@@ -291,32 +290,155 @@ async function getAllScores() {
 
     let showArray = [];
 
-    showIDsStoredLocally.forEach(async showID => {
+    showIDsStoredLocally.forEach(showID => {
         const date = getShowDate(showID);
-        showArray.push([date, await getBestScores(showID)]);
+        showArray.push([date, getBestScores(showID)]);
     })
 
-    return showArray;
+    let listOfShows = {};
+
+    showIDsStoredLocally.forEach(showID => {
+        const date = getShowDate(showID);
+        listOfShows[date] = getBestScores(showID);
+    })
+
+    return listOfShows;
+}
+
+function getStatDivsThatAreNo() {
+    const showIDsStoredLocally = Object.keys(localStorage)
+        .filter(key => {
+            return Number.isInteger(Number.parseInt(key));
+        })
+        .sort((a, b) => a - b);
+
+    let ridersWithStatDivOfNo = {};
+    let ridersArray = [];
+
+    showIDsStoredLocally.forEach(showID => {
+        const show = JSON.parse(localStorage.getItem(showID));
+        const ridersAtShow = Object.keys(show.riders)
+
+        // console.log(show);
+        ridersAtShow.forEach(rider => {
+            const riderData = show.riders[rider].data;
+
+            riderData.forEach((showRound, idx) => {
+                const statDivIsNo = showRound.statDiv === "No";
+                console.log(idx);
+                if (statDivIsNo) {
+
+                    if (ridersArray.includes())
+
+                    if (!ridersWithStatDivOfNo[showID]) {
+                        ridersWithStatDivOfNo[showID] = [rider];
+
+                        const testOutput = `${showID}-${rider}-${idx}`;
+                        console.log(testOutput);
+                    } else if (ridersWithStatDivOfNo[showID] && !ridersWithStatDivOfNo[showID].includes(rider)) {
+                        console.log("test");
+                        ridersWithStatDivOfNo[showID].push(rider);
+                    }
+                }
+                // console.log(statDivIsNo);
+            })
+        })
+        // console.log(show);
+        // console.log(ridersAtShow);
+
+    })
+    console.log(ridersWithStatDivOfNo);
+
+
+
+    // let showArray = [];
+    // showIDsStoredLocally.forEach(showID => {
+    //     const date = getShowDate(showID);
+    //     showArray.push([date, getBestScores(showID)]);
+    // })
+
+    // let listOfShows = {};
+
+    // showIDsStoredLocally.forEach(showID => {
+    //     const date = getShowDate(showID);
+    //     listOfShows[date] = getBestScores(showID);
+    // })
+}
+getStatDivsThatAreNo();
+
+statDivIsNo.addEventListener('click', () => {
+    showDateAndResultsToggle(false);
+    bestScoresDiv.innerHTML = '';
+
+    console.log("hello");
+})
+
+function showDateAndResultsToggle(bool) {
+    if (bool === true) {
+        dateContainer.style.visibility = "visible";
+        dateContainer.style.position = "relative";
+        resultsToggle.style.visibility = "visible";
+        resultsToggle.style.position = "relative";
+    } else {
+        dateContainer.style.visibility = "hidden";
+        dateContainer.style.position = "absolute";
+        resultsToggle.style.visibility = "hidden";
+        resultsToggle.style.position = "absolute";
+    }
 }
 
 
-finalStandings.addEventListener('click', async () => {
-    const finalResults = await calculateFinalResults();
+finalStandings.addEventListener('click', () => {
+    const finalResults = calculateFinalResults();
 
-    const myPromise = new Promise((resolve, reject) => {
-        showBestScores(finalResults[0], finalResults[1]);
-    });
-    // showBestScores(finalResults[0], finalResults[1]);
-    // console.log(finalResults[0]);
-
-    myPromise.then(tableSort());
+    showDateAndResultsToggle(false);
+    showBestScores(finalResults[0], finalResults[1]);
+    tableSort(); // Makes tables on the page sortable by their headers
+    sortTablesBy("score");
 });
-async function calculateFinalResults() {
-    const listOfShows = await getAllScores();
+
+function sortTablesBy(header) {
+    const columnsToSort = document.querySelectorAll(`.${header}`);
+    // window.asc = false;
+
+    if (header === "score") {
+        columnsToSort.forEach(column => {
+            column.click();
+            column.click();
+        });
+    } else {
+        columnsToSort.forEach(column => {
+            column.click();
+            // column.click();
+
+        });
+    }
+    // switch (header) {
+    //     case "score":
+    //         columnsToSort.forEach(column => {
+    //             column.click();
+    //             column.click();
+    //         });
+    //         break;
+
+    //     case "rider":
+    //         columnsToSort.forEach(column => {
+    //             column.click();
+    //         });
+    //         break;
+    //     default:
+    //         console.log("tableSortDefault() switch default case");
+    // }
+
+}
+
+function calculateFinalResults() {
+    const listOfShows = getAllScores();
+    const listOfShowsKeys = Object.keys(listOfShows);
     let topTwoScores = {};
 
-    listOfShows.forEach(show => {
-        const showData = show[1];
+    listOfShowsKeys.forEach(showDate => {
+        const showData = listOfShows[showDate];
         const showKeys = Object.keys(showData);
 
         showKeys.forEach(division => {
@@ -405,28 +527,43 @@ function tableSort() {
         v1 !== '' && v2 !== '' && !isNaN(v1) && !isNaN(v2) ? v1 - v2 : v1.toString().localeCompare(v2)
     )(getCellValue(asc ? a : b, idx), getCellValue(asc ? b : a, idx));
 
-    // do the work...
+    // // do the work...
+    // document.querySelectorAll('th').forEach(th => th.addEventListener('click', (() => {
+    //     const table = th.closest('table');
+    //     Array.from(table.querySelectorAll('tr:nth-child(n+3)'))
+    //         .sort(comparer(Array.from(th.parentNode.children).indexOf(th), window.asc = !window.asc))
+    //         .forEach(tr => table.appendChild(tr));
+    // })));
+
     document.querySelectorAll('th').forEach(th => th.addEventListener('click', (() => {
         const table = th.closest('table');
-        console.log(table);
-        Array.from(table.querySelectorAll('tr:nth-child(n+3)'))
-            .sort(comparer(Array.from(th.parentNode.children).indexOf(th), window.asc = !window.asc))
-            .forEach(tr => table.appendChild(tr));
+        const array = Array.from(table.querySelectorAll('tr:nth-child(n+3)'));
+
+        const columnHeaders = Array.from(th.parentNode.children);
+        const headerLength = columnHeaders.length;
+        const clickedHeader = Array.from(th.parentNode.children).indexOf(th);
+
+        for (let i = 0; i < headerLength; i++) {
+            if (i !== clickedHeader) {
+                if (i === headerLength - 1) {
+                    window[`Col${i}`] = true;
+                } else {
+                    window[`Col${i}`] = false;
+                }
+            }
+        }
+
+        const newArray = array.sort(comparer(clickedHeader,
+            window[`Col${clickedHeader}`] = !window[`Col${clickedHeader}`]));
+        newArray.forEach(tr => table.appendChild(tr));
     })));
 }
 
-window.onload = function () {
-    const getCellValue = (tr, idx) => tr.children[idx].innerText || tr.children[idx].textContent;
-
-    const comparer = (idx, asc) => (a, b) => ((v1, v2) =>
-        v1 !== '' && v2 !== '' && !isNaN(v1) && !isNaN(v2) ? v1 - v2 : v1.toString().localeCompare(v2)
-    )(getCellValue(asc ? a : b, idx), getCellValue(asc ? b : a, idx));
-
-    // do the work...
-    document.querySelectorAll('th').forEach(th => th.addEventListener('click', (() => {
-        const table = th.closest('table');
-        Array.from(table.querySelectorAll('tr:nth-child(n+2)'))
-            .sort(comparer(Array.from(th.parentNode.children).indexOf(th), this.asc = !this.asc))
-            .forEach(tr => table.appendChild(tr));
-    })));
+window.onload = () => {
+    const searchedID = localStorage.getItem('searchedID');
+    showsListDropdown();
+    showFullResults(searchedID);
+    setTableWidth();
+    tableSort();
+    sortTablesBy("rider");
 }

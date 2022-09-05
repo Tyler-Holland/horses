@@ -1,7 +1,7 @@
 // I don't like things being in the top line
 
-// import { doStuffWithData } from "./results.js";
 
+const corsProxyURL = "https://cors-anywhere.herokuapp.com/";
 
 const searchBtn = document.getElementById("searchBtn");
 searchBtn.addEventListener('click', getResults);
@@ -9,11 +9,11 @@ searchBtn.addEventListener('click', getResults);
 async function getResults() { // Gets the results from a specific show and stores them in localStorage using the ID of the show
     const searchBar = document.getElementById('searchBar');
     const url = searchBar.value;
-    const isValidShowURL = /www\.foxvillage\.com\/show\?id=\d+$/.test(url);
+    const isValidShowURL = /foxvillage\.com\/show\?id=\d+$/.test(url);
 
     if (isValidShowURL) {
         const showID = url.match(/\d+$/)[0];
-        const riderList = await fetch(`https://corsanywhere.herokuapp.com/https://www.foxvillage.com/show/GetRiderData?id=${showID}`)
+        const riderList = await fetch(`${corsProxyURL}https://www.foxvillage.com/show/GetRiderData?id=${showID}`)
             .then(response => response.json())
             .then(json => json.riderData);
 
@@ -44,7 +44,7 @@ async function getShowData(showID, riderList, url) {
 
     for (const rider of riderList) {
         const id = rider.riderID;
-        const riderData = await fetch(`https://corsanywhere.herokuapp.com/https://www.foxvillage.com/show/GetAllRiderData?show=${showID}&id=${id}`)
+        const riderData = await fetch(`${corsProxyURL}https://www.foxvillage.com/show/GetAllRiderData?show=${showID}&id=${id}`)
             .then(response => response.json())
             .then(json => json.riderPageData);
         let riderName = await trimInput(rider.riderName, "rider");
@@ -66,7 +66,7 @@ async function getShowData(showID, riderList, url) {
             entry.entryNum = promises[3];
             entry.day = promises[4];
             entry.rideTime = promises[5];
-            entry.test = promises[6];
+            entry.test = promises[6];           
         })
 
         console.log(riderName);
@@ -79,8 +79,6 @@ async function getShowData(showID, riderList, url) {
     loadingBarText.innerText = `Getting rider data: Complete!`;
     return showInfo;
 }
-
-
 
 async function trimInput(input, type) {
     if (type === "day") {
@@ -101,12 +99,17 @@ async function trimInput(input, type) {
         switch (type) {
             case "rider":
                 const splitName = regexMatch.split(',');
-                const finalName = `${splitName[1]} ${splitName[0]}`.trim();   // and then set it to firstName lastName
+                let firstName = splitName[1].charAt(1).toUpperCase() + splitName[1].substring(2);
+                if (firstName === "Jeniffer") firstName = "Jennifer";
+                const lastName = splitName[0].charAt(0).toUpperCase() + splitName[0].substring(1);
+                const tempName = `${firstName} ${lastName}`.trim();
+                const finalName = tempName.replace('-', ' ');
                 return finalName;
                 break;
 
             case "horse":
             case "number":
+                if (regexMatch === "JETSON P" || regexMatch === "JetsonP") return "Jetson P";
                 return regexMatch;
                 break;
             case "day":
@@ -120,24 +123,10 @@ async function trimInput(input, type) {
 
 }
 
-async function getRiderName(input) {
-    const regex = />(.+)</; // Input looks like: <a href='/result?type=rider&showid=9334&id=9'>Thurston, Elizabeth</a>
-    const rawName = input.match(regex)[1];
-    const splitName = rawName.replace(',', '').split(' '); // Remove the comma from the name
-    const finalName = `${splitName[1]} ${splitName[0]}`;   // and then set it to firstName lastName
-
-    return finalName;
-}
-
-async function getHorseName(input) {
-    const regex = />(.+)</;
-    const rawName = input.match(regex)[1];
-}
-
 async function getDate(showID) {
     const dateRegex = /\d{4}-\d{2}-\d{2}/;
     console.log(showID);
-    const show = await fetch(`https://corsanywhere.herokuapp.com/https://www.foxvillage.com/show/GetClassData?id=${showID}`)
+    const show = await fetch(`${corsProxyURL}https://www.foxvillage.com/show/GetClassData?id=${showID}`)
         .then(response => response.json())
         .then(json => json.classData[0].date);
     const date = show.match(dateRegex)[0]
@@ -145,3 +134,32 @@ async function getDate(showID) {
     console.log(date);
     return date;
 }
+
+function addToRiderDB() {
+    const showIDs = [9259, 9281, 9334, 9335];
+    let names = JSON.parse(localStorage.getItem('riderDB'));
+
+    if (names) {
+    showIDs.forEach(id => {
+        const showData = JSON.parse(localStorage.getItem(id));
+        const showDataKeys = Object.keys(showData);
+
+        showDataKeys.forEach(key => {
+            if (!Number.parseFloat(key)) return;
+            
+            const rider = showData[key][0];
+
+            if (!names[key]) {
+                names[key] = rider;
+                console.log(rider);
+            } 
+        })
+
+    })
+    }
+
+
+    localStorage.setItem('riderDB', JSON.stringify(names));
+    console.log(names);
+}
+addToRiderDB();
